@@ -2,7 +2,8 @@ doctype html
 html
   head
     title Calculadora de Macronutrientes
-    script(src='/public/scripts/main.js')  // Asegúrate de que este script esté en la ruta correcta
+    link(rel="stylesheet", href="/css/Styles.css")
+    script(src='/public/scripts/main.js')  
   body
     h1 Calculadora de nutrición
     form(action='/calcular', method='POST', id='calculoForm')
@@ -50,7 +51,7 @@ html
         option(value='50-30-20') 50% Proteínas, 30% Carbohidratos, 20% Grasas
         option(value='personalizado') Personalizada
 
-      div#customInputs(style='display: none;')  // Aquí está la lógica para ocultar los campos por defecto
+      div#customInputs(style='display: none;')  
         label(for='proteinas') Porcentaje de Proteínas
         input(type='number', id='proteinas', name='proteinas', min='0', max='100', value='40') 
 
