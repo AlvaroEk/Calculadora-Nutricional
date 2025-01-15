@@ -6,15 +6,9 @@ body {
   padding: 0;
 }
 
-h1 {
+h1, h2 {
   text-align: center;
   color: #9972ff;
-  margin: 20px 0;
-}
-
-h2 {
-  text-align: center;
-  color: #000;
   margin: 20px 0;
 }
 
@@ -35,8 +29,26 @@ label {
   color: #333333;
 }
 
-input[type=number], select {
-  width: 100%;
+.input-field {
+  width: 95%;
+  padding: 8px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.input-select {
+  width: 45%;
+  padding: 8px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.input-select1 {
+  width: 90%;
   padding: 8px;
   margin-bottom: 15px;
   border: 1px solid #ddd;

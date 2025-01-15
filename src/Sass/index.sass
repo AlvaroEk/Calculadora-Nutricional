@@ -26,14 +26,9 @@ body
   margin: 0
   padding: 0
 
-h1
+h1, h2
   text-align: center
   color: #9972ff // Morado para el título
-  margin: 20px 0
-
-h2
-  text-align: center
-  color: #000 // Morado para el título
   margin: 20px 0
 
 // Form Styles
@@ -52,8 +47,26 @@ label
   font-weight: bold
   color: $font-color
 
-input[type='number'], select
-  width: 100%
+// Estilo para input (no select)
+.input-field
+  width: 95%
+  padding: 8px
+  margin-bottom: 15px
+  border: 1px solid $border-color
+  border-radius: 4px
+  font-size: 16px
+
+// Estilo para select
+.input-select
+  width: 45%
+  padding: 8px
+  margin-bottom: 15px
+  border: 1px solid $border-color
+  border-radius: 4px
+  font-size: 16px
+
+.input-select1
+  width: 90%
   padding: 8px
   margin-bottom: 15px
   border: 1px solid $border-color
