@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const caloriasRoutes = require('./routes/index');  // Rutas de la API
-const macronutrientesRoutes = require('./routes/macronutrientesRoutes');
+const caloriasRoutes = require('./src/routes/index');  // Rutas de la API
+const macronutrientesRoutes = require('./src/routes/macronutrientesRoutes');
 
 const app = express();
 
