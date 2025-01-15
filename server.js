@@ -11,6 +11,8 @@ app.use(express.urlencoded({ extended: true }));
 app.set('views', path.join(__dirname, 'src', 'views')); // Apunta a src/views
 app.set('view engine', 'pug');
 
+// Servir archivos estáticos (JS, CSS, imágenes)
+app.use('/public', express.static(path.join(__dirname, 'public')));
 
 // Ruta para la página principal
 app.get('/', (req, res) => {

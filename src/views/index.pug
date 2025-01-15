@@ -1,60 +1,66 @@
-h1 Calculadora de nutrición
-form(action='/calcular', method='POST', id='calculoForm')
-  label(for='sexo') Sexo
-  select(id='sexo', name='sexo')
-    option(value='masculino') Masculino
-    option(value='femenino') Femenino
+doctype html
+html
+  head
+    title Calculadora de Macronutrientes
+    script(src='/public/scripts/main.js')  // Asegúrate de que este script esté en la ruta correcta
+  body
+    h1 Calculadora de nutrición
+    form(action='/calcular', method='POST', id='calculoForm')
+      label(for='sexo') Sexo
+      select(id='sexo', name='sexo')
+        option(value='masculino') Masculino
+        option(value='femenino') Femenino
 
-  label(for='edad') Edad
-  input(type='number', id='edad', name='edad', required)
+      label(for='edad') Edad
+      input(type='number', id='edad', name='edad', required)
 
-  label(for='peso') Peso (kg)
-  input(type='number', id='peso', name='peso', required)
+      label(for='peso') Peso (kg)
+      input(type='number', id='peso', name='peso', required)
 
-  label(for='altura') Altura (cm)
-  input(type='number', id='altura', name='altura', required)
+      label(for='altura') Altura (cm)
+      input(type='number', id='altura', name='altura', required)
 
-  label(for='actividad') Actividad Física
-  select(id='actividad', name='actividad')
-    option(value='sedentario') Sedentario
-    option(value='ligeramenteActivo') Ligeramente Activo
-    option(value='moderadamenteActivo') Moderadamente Activo
-    option(value='muyActivo') Muy Activo
-    option(value='extraActivo') Extra Activo
+      label(for='actividad') Actividad Física
+      select(id='actividad', name='actividad')
+        option(value='sedentario') Sedentario
+        option(value='ligeramenteActivo') Ligeramente Activo
+        option(value='moderadamenteActivo') Moderadamente Activo
+        option(value='muyActivo') Muy Activo
+        option(value='extraActivo') Extra Activo
 
-  label(for='objetivo') Objetivo
-  select(id='objetivo', name='objetivo')
-    option(value='mantener') Mantener Peso
-    option(value='perder') Perder Peso
-    option(value='ganar') Ganar Peso
+      label(for='objetivo') Objetivo
+      select(id='objetivo', name='objetivo')
+        option(value='mantener') Mantener Peso
+        option(value='perder') Perder Peso
+        option(value='ganar') Ganar Peso
 
-  button(type='submit', id='calcularBtn') Calcular
+      button(type='submit', id='calcularBtn') Calcular
 
-div#resultado
-  block content
+    div#resultado
+      block content
 
-h1 Calculadora de Macronutrientes
-form(action='/calcular-macronutrientes', method='POST', id='calculoForm')
-  label(for='calorias') Calorías totales
-  input(type='number', id='calorias', name='calorias', required)
+    h1 Calculadora de Macronutrientes
+    form(action='/calcular-macronutrientes', method='POST', id='calculoMacronutrientesForm')
+      label(for='calorias') Calorías totales
+      input(type='number', id='calorias', name='calorias', required)
 
-  label(for='distribucion') Distribución de Macronutrientes
-  select(id='distribucion', name='distribucion')
-    option(value='40-40-20') 40% Proteínas, 40% Carbohidratos, 20% Grasas
-    option(value='50-30-20') 50% Proteínas, 30% Carbohidratos, 20% Grasas
-    option(value='personalizado') Personalizada
+      label(for='distribucion') Distribución de Macronutrientes
+      select(id='distribucion', name='distribucion')
+        option(value='40-40-20') 40% Proteínas, 40% Carbohidratos, 20% Grasas
+        option(value='50-30-20') 50% Proteínas, 30% Carbohidratos, 20% Grasas
+        option(value='personalizado') Personalizada
 
-  div#customInputs(style='display: none;')
-    label(for='proteinas') Porcentaje de Proteínas
-    input(type='number', id='proteinas', name='proteinas', min='0', max='100')
+      div#customInputs(style='display: none;')  // Aquí está la lógica para ocultar los campos por defecto
+        label(for='proteinas') Porcentaje de Proteínas
+        input(type='number', id='proteinas', name='proteinas', min='0', max='100', value='40') 
 
-    label(for='carbohidratos') Porcentaje de Carbohidratos
-    input(type='number', id='carbohidratos', name='carbohidratos', min='0', max='100')
+        label(for='carbohidratos') Porcentaje de Carbohidratos
+        input(type='number', id='carbohidratos', name='carbohidratos', min='0', max='100', value='40') 
 
-    label(for='grasas') Porcentaje de Grasas
-    input(type='number', id='grasas', name='grasas', min='0', max='100')
+        label(for='grasas') Porcentaje de Grasas
+        input(type='number', id='grasas', name='grasas', min='0', max='100', value='20') 
 
-  button(type='submit', id='calcularBtn') Calcular
+      button(type='submit', id='calcularBtn') Calcular
 
-div#resultado1
-  block content1
+    div#resultado1
+      block content1
