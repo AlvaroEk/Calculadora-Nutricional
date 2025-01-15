@@ -1,0 +1,12 @@
+extends index
+
+block content1
+  h1 Resultado de tu cálculo
+  if resultado
+    p Macronutrientes necesarios por día:
+    ul
+      li Proteínas: #{resultado.proteinas} g
+      li Carbohidratos: #{resultado.carbohidratos} g
+      li Grasas: #{resultado.grasas} g
+  else
+    p No se pudo calcular los macronutrientes. Intenta nuevamente.

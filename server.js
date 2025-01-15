@@ -14,7 +14,7 @@ app.set('view engine', 'pug');
 
 // Ruta para la página principal
 app.get('/', (req, res) => {
-    res.render('index');  // Renderiza la vista 'calorias.pug'
+    res.render('index');
 });
 
 // Ruta para manejar el formulario de cálculo de calorías
@@ -37,6 +37,29 @@ app.post('/calcular', async (req, res) => {
         res.render('resultado', { resultado });
     } catch (error) {
         res.status(500).send('Hubo un error al calcular las necesidades calóricas.');
+    }
+});
+
+// Ruta para manejar el cálculo de macronutrientes
+app.post('/calcular-macronutrientes', async (req, res) => {
+    const { calorias, distribucion, proteinas, carbohidratos, grasas } = req.body;
+
+    try {
+        // Enviar los datos a la API REST para calcular los macronutrientes
+        const response = await axios.post('http://localhost:4000/api/macronutrientes/calcular', {
+            calorias,
+            distribucion,
+            proteinas,
+            carbohidratos,
+            grasas
+        });
+
+        // Recibir el resultado de la API y renderizar la vista con el resultado
+        const resultado = response.data.resultado;
+        res.render('resultado1', { resultado });
+    } catch (error) {
+        console.error('Error al calcular macronutrientes:', error);
+        res.status(500).send('Hubo un error al calcular los macronutrientes.');
     }
 });
 
