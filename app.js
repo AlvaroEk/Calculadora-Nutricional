@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const caloriasRoutes = require('./routes/index');  // Rutas de la API
+const macronutrientesRoutes = require('./routes/macronutrientesRoutes');
 
 const app = express();
 
@@ -10,6 +11,7 @@ app.use(bodyParser.urlencoded({ extended: true }));  // Parsear formularios URL 
 
 // Rutas de la API para el cálculo de calorías
 app.use('/api/calorias', caloriasRoutes);  // Definir las rutas de la API
+app.use('/api/macronutrientes', macronutrientesRoutes);
 
 // Puerto del servidor API
 const PORT = process.env.PORT || 4000;
