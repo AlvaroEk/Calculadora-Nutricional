@@ -13,6 +13,6 @@ exports.calcularNecesidadesCaloricas = (req, res) => {
         const resultado = caloriasService.calcular(sexo, edad, peso, altura, actividad, objetivo);
         return res.status(200).json({ resultado });
     } catch (error) {
-        return res.status(500).json({ error: 'Error al calcular las necesidades calóricas.' });
+        return res.status(500).json({ error: error.message });
     }
 };

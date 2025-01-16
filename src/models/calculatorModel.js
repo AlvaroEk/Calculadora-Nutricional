@@ -1,27 +1,26 @@
-// backend/models/nutricionModel.js
+// models/caloriasModel.js
 
-class NutricionModel {
-  constructor(peso, altura, edad, sexo, actividad, objetivo, tasa) {
-    this.peso = peso;
-    this.altura = altura;
-    this.edad = edad;
-    this.sexo = sexo;
-    this.actividad = actividad;
-    this.objetivo = objetivo;
-    this.tasa = tasa || 0; // Tasa de pérdida o ganancia (opcional)
+const validarDatos = (sexo, edad, peso, altura, actividad, objetivo) => {
+  // Validación de los datos
+  if (!sexo || !edad || !peso || !altura || !actividad || !objetivo) {
+    throw new Error('Faltan datos necesarios.');
   }
 
-  obtenerDatos() {
-    return {
-      peso: this.peso,
-      altura: this.altura,
-      edad: this.edad,
-      sexo: this.sexo,
-      actividad: this.actividad,
-      objetivo: this.objetivo,
-      tasa: this.tasa
-    };
+  if (edad <= 0 || peso <= 0 || altura <= 0) {
+    throw new Error('Edad, peso y altura deben ser mayores que 0.');
   }
-}
 
-module.exports = NutricionModel;
+  const actividadesValidas = ['sedentario', 'ligeramenteActivo', 'moderadamenteActivo', 'muyActivo', 'extraActivo'];
+  if (!actividadesValidas.includes(actividad)) {
+    throw new Error('Actividad no válida. Opciones válidas: "sedentario", "ligeramenteActivo", "moderadamenteActivo", "muyActivo", "extraActivo".');
+  }
+
+  const objetivosValidos = ['mantener', 'perder', 'ganar'];
+  if (!objetivosValidos.includes(objetivo)) {
+    throw new Error('Objetivo no válido. Opciones válidas: "mantener", "perder", "ganar".');
+  }
+
+  return true;
+};
+
+module.exports = { validarDatos };

@@ -1,5 +1,10 @@
 // services/caloriasService.js
+const { validarDatos } = require('../models/calculatorModel');
+
 const calcular = (sexo, edad, peso, altura, actividad, objetivo) => {
+  // Validación de los datos utilizando el Model
+  validarDatos(sexo, edad, peso, altura, actividad, objetivo);
+
   // Ecuación de Mifflin-St Jeor
   let geb;
   if (sexo === 'masculino') {
