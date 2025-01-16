@@ -3,12 +3,12 @@ html
   head
     title Calculadora de Macronutrientes
     link(rel="stylesheet", href="/css/Styles.css")
-    script(src='/public/scripts/main.js')  
+    script(src='/public/scripts/main.js')
   body
-    h1 Calculadora de nutrición
+    h1 Calculadora de Nutrición
     form(action='/calcular', method='POST', id='calculoForm')
       label(for='sexo') Sexo
-      select(id='sexo', name='sexo', class='input-select')
+      select(id='sexo', name='sexo', class='input-selectgenero')
         option(value='masculino') Masculino
         option(value='femenino') Femenino
 
@@ -35,12 +35,12 @@ html
         option(value='perder') Perder Peso
         option(value='ganar') Ganar Peso
 
-      button(type='submit', id='calcularBtn') Calcular
+      button(type='submit', id='calcularNutricionBtn') Calcular
 
     div#resultado
       block content
 
-    h2 Calculadora de Macronutrientes
+    h1 Calculadora de Macronutrientes
     form(action='/calcular-macronutrientes', method='POST', id='calculoMacronutrientesForm')
       label(for='calorias') Calorías totales
       input(type='number', id='calorias', name='calorias', required, class='input-field')
@@ -51,7 +51,7 @@ html
         option(value='50-30-20') 50% Proteínas, 30% Carbohidratos, 20% Grasas
         option(value='personalizado') Personalizada
 
-      div#customInputs(style='display: none;')  
+      div#customInputs(style='display: none;')
         label(for='proteinas') Porcentaje de Proteínas
         input(type='number', id='proteinas', name='proteinas', min='0', max='100', value='40', class='input-field')
 
@@ -61,7 +61,7 @@ html
         label(for='grasas') Porcentaje de Grasas
         input(type='number', id='grasas', name='grasas', min='0', max='100', value='20', class='input-field')
 
-      button(type='submit', id='calcularBtn') Calcular
+      button(type='submit', id='calcularMacronutrientesBtn') Calcular
 
     div#resultado1
       block content1

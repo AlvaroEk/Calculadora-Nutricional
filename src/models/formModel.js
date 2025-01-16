@@ -1,27 +1,25 @@
-// frontend/models/nutricionModel.js
+const validarDatos = (datos) => {
+  const { sexo, edad, peso, altura, actividad, objetivo } = datos;
 
-class NutricionModel {
-  constructor(peso, altura, edad, sexo, actividad, objetivo, tasa) {
-    this.peso = peso;
-    this.altura = altura;
-    this.edad = edad;
-    this.sexo = sexo;
-    this.actividad = actividad;
-    this.objetivo = objetivo;
-    this.tasa = tasa || 0;
+  if (!sexo || !edad || !peso || !altura || !actividad || !objetivo) {
+    throw new Error('Todos los campos son obligatorios.');
   }
 
-  obtenerDatos() {
-    return {
-      peso: this.peso,
-      altura: this.altura,
-      edad: this.edad,
-      sexo: this.sexo,
-      actividad: this.actividad,
-      objetivo: this.objetivo,
-      tasa: this.tasa
-    };
+  if (edad <= 0 || peso <= 0 || altura <= 0) {
+    throw new Error('Edad, peso y altura deben ser mayores a 0.');
   }
-}
 
-module.exports = NutricionModel;
+  const actividadesValidas = ['baja', 'moderada', 'alta'];
+  if (!actividadesValidas.includes(actividad)) {
+    throw new Error('La actividad debe ser una de las siguientes: baja, moderada, alta.');
+  }
+
+  const objetivosValidos = ['mantener', 'perder', 'ganar'];
+  if (!objetivosValidos.includes(objetivo)) {
+    throw new Error('El objetivo debe ser uno de los siguientes: mantener, perder, ganar.');
+  }
+
+  return true;
+};
+
+module.exports = { validarDatos };

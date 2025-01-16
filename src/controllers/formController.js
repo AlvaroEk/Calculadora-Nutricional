@@ -1,3 +1,4 @@
+// controllers/nutricionController.js
 const calcularNutricion = require('../service/apiService');
 
 const calcularBtn = document.getElementById('calcularBtn');
