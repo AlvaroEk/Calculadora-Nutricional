@@ -1,10 +1,6 @@
-doctype html
-html
-  head
-    title Calculadora de Macronutrientes
-    link(rel="stylesheet", href="/css/Styles.css")
-    script(src='/public/scripts/main.js')
-  body
+extends navbar
+
+block content2
     h1 Calculadora de Nutrición
     form(action='/calcular', method='POST', id='calculoForm')
       label(for='sexo') Sexo
@@ -65,3 +61,4 @@ html
 
     div#resultado1
       block content1
+    

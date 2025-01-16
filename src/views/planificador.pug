@@ -1,0 +1,21 @@
+extends navbar
+
+block content2
+  h1 Planificador de Comidas
+  form#planificadorForm(action='/planificar', method='POST')
+    label(for='caloriasTotales') Calorías Totales Diarias
+    input.input-field(type='number', id='caloriasTotales', name='caloriasTotales', required)
+
+    label(for='proteinasTotales') Proteínas Totales (g)
+    input.input-field(type='number', id='proteinasTotales', name='proteinasTotales', required)
+
+    label(for='carbohidratosTotales') Carbohidratos Totales (g)
+    input.input-field(type='number', id='carbohidratosTotales', name='carbohidratosTotales', required)
+
+    label(for='grasasTotales') Grasas Totales (g)
+    input.input-field(type='number', id='grasasTotales', name='grasasTotales', required)
+
+    label(for='comidas') Número de Comidas
+    input.input-field(type='number', id='comidas', name='comidas', required)
+
+    button(type='submit', id='generarComidas') Generar Plan de Comidas

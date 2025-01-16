@@ -1,0 +1,18 @@
+extends planificador
+
+block content3
+  #resultado2
+    h1 Resultado del Plan de Comidas
+    if planDeComidas && planDeComidas.length > 0
+      p Aquí tienes tu plan de comidas generado:
+      ul
+        each comida in planDeComidas
+          li
+            strong Comida #{comida.comida}:
+            p
+              | Calorías: #{comida.calorias} kcal,
+              | Proteínas: #{comida.proteinas} g,
+              | Carbohidratos: #{comida.carbohidratos} g,
+              | Grasas: #{comida.grasas} g
+    else
+      p No se pudo generar el plan de comidas. Intenta nuevamente.
