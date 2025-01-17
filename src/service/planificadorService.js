@@ -1,13 +1,22 @@
 // services/planificadorService.js
 const axios = require('axios');
+const { validarDatosPlanDeComidas } = require('../models/planComidaModels');
 
-const generarPlanDeComidas = async (datosFormulario) => {
+const generarPlanDeComidasService = async (datosFormulario) => {
   try {
-    const response = await axios.post('http://localhost:4000/api/planificador/planificar', datosFormulario);
+    // Validar los datos utilizando el Model
+    validarDatosPlanDeComidas(datosFormulario);
+
+    console.log('Enviando datos a la API...', datosFormulario); // Verifica los datos antes de enviarlos
+
+    const response = await axios.post('http://localhost:4000/api/planificador/generar', datosFormulario);
+    
+    console.log('Respuesta de la API:', response.data); // Muestra la respuesta
     return response.data.planDeComidas;
   } catch (error) {
-    throw new Error('Error en la solicitud al backend: ' + error.message);
+    console.error('Error al generar el plan de comidas:', error);
+    throw new Error('No se pudo generar el plan de comidas o los datos son incorrectos');
   }
 };
 
-module.exports = { generarPlanDeComidas };
+module.exports = { generarPlanDeComidasService };

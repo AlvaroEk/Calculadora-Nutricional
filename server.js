@@ -76,7 +76,7 @@ app.post('/planificar', async (req, res) => {
 
     try {
         // Enviar los datos a la API REST para generar el plan de comidas
-        const response = await axios.post('http://localhost:4000/api/planificador/planificar', {
+        const response = await axios.post('http://localhost:4000/api/planificador/generar', {
             caloriasTotales,
             proteinasTotales,
             carbohidratosTotales,
