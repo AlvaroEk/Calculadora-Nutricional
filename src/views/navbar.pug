@@ -9,8 +9,15 @@ html
       ul
         li
           a(href='/') Calculadora
-        li 
-         a(href='/planificador') Planificador
+        li
+          a(href='/planificador') Planificador
+        // Condicional para mostrar Login o Logout dependiendo del estado del usuario
+        if session && session.usuario
+          li
+            a(href='/logout', id='logoutButton') Logout
+        else
+          li
+            a(href='/login') Login
     .container
       block content2
       block content3

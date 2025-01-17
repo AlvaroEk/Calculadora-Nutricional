@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const distribucionSelect = document.getElementById('distribucion');
   const customInputs = document.getElementById('customInputs');
   const calculoMacronutrientesForm = document.getElementById('calculoMacronutrientesForm');
+  const logoutButton = document.getElementById('logoutButton'); // Botón de cierre de sesión
 
   // Función para manejar el cambio de la opción seleccionada en el select
   const toggleCustomInputs = () => {
@@ -33,4 +34,19 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
   });
+
+  // Lógica de cierre de sesión
+  if (logoutButton) {
+    logoutButton.addEventListener('click', () => {
+      // Hacer la solicitud GET para cerrar sesión
+      axios.get('/api/users/logout')
+        .then(response => {
+          window.location.href = '/login'; // Redirigir al login después de cerrar sesión
+        })
+        .catch(error => {
+          console.error('Error al cerrar sesión:', error);
+          alert('Error al cerrar sesión.');
+        });
+    });
+  }
 });

@@ -1,8 +1,10 @@
 const express = require('express');
 const path = require('path');
 const axios = require('axios');  // Para hacer solicitudes a la API REST
+const UsuarioModel = require('./src/models/usuarioModel'); // Asegúrate de que la ruta sea correcta
 const app = express();
 const routes = require('./src/routes/routes');
+const userRouter = require('./src/routes/userRoutes');
 
 // Middleware para manejar JSON y formularios
 app.use(express.json());
@@ -12,17 +14,22 @@ app.use(express.urlencoded({ extended: true }));
 app.set('views', path.join(__dirname, 'src', 'views')); // Apunta a src/views
 app.set('view engine', 'pug');
 
+app.use('/login', (req, res) => res.render('login'));
+app.use('/register', (req, res) => res.render('register'));
+app.use('/logout', (req, res) => res.render('index'));
+
+
 // Servir archivos estáticos (JS, CSS, imágenes)
 app.use('/public', express.static(path.join(__dirname, 'public')));
 
 // Rutas
 app.use('/', routes);
+app.use('/user', userRouter); // API para usuarios
 
 // Ruta para la página principal
 app.get('/', (req, res) => {
     res.render('index');
 });
-
 
 // Ruta para manejar el formulario de cálculo de calorías
 app.post('/calcular', async (req, res) => {
@@ -92,6 +99,8 @@ app.post('/planificar', async (req, res) => {
         res.status(500).send('Hubo un error al generar el plan de comidas.');
     }
 });
+
+app.use('/api/usuarios', userRouter)
 
 // Servir archivos estáticos (JS, CSS, imágenes)
 app.use(express.static(path.join(__dirname, 'public')));
