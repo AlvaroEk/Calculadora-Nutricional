@@ -1,0 +1,35 @@
+extends navbar
+
+block content2
+  h1 Registro de Alimentos
+  
+  form#registroForm(action='/registro/registrar', method='POST') 
+    // Campo oculto para el usuario ID
+    input.input-field(type='text', id='usuario_id', name='usuario_id', value='1', hidden)
+
+    // Campo para la fecha
+    label(for='fecha') Fecha
+    input.input-field(type='date', id='fecha', name='fecha', required)
+
+    // Campo para el nombre de la comida
+    label(for='comida') Nombre de la Comida
+    input.input-field(type='text', id='comida', name='comida', required)
+
+    // Campo para las calorías
+    label(for='calorias') Calorías (kcal)
+    input.input-field(type='number', id='calorias', name='calorias', required)
+
+    // Campo para las proteínas
+    label(for='proteinas') Proteínas (g)
+    input.input-field(type='number', id='proteinas', name='proteinas', step='0.01', required)
+
+    // Campo para los carbohidratos
+    label(for='carbohidratos') Carbohidratos (g)
+    input.input-field(type='number', id='carbohidratos', name='carbohidratos', step='0.01', required)
+
+    // Campo para las grasas
+    label(for='grasas') Grasas (g)
+    input.input-field(type='number', id='grasas', name='grasas', step='0.01', required)
+
+    // Botón para enviar el formulario
+    button(type='submit', id='registrarComida') Registrar Comida

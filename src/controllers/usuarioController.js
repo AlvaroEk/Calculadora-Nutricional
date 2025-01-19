@@ -23,8 +23,15 @@ class UsuarioController {
             const { token, usuario } = await UsuarioService.loginUsuario({ correo, password });
             console.log('Token:', token);
             console.log('Usuario:', usuario);
-            res.cookie('authToken', token, { httpOnly: true }); // Guardar token en cookie
-            res.redirect('/'); // Redirigir a la página principal después de iniciar sesión
+
+            // Guardar información del usuario en la sesión
+            req.session.user = { id: usuario.id, nombre: usuario.nombre, correo: usuario.correo };
+
+            // Guardar token en una cookie
+            res.cookie('authToken', token, { httpOnly: true });
+
+            // Redirigir a la página principal
+            res.redirect('/');
         } catch (error) {
             console.error(error.message);
             res.status(401).send('Credenciales incorrectas.');
@@ -34,17 +41,38 @@ class UsuarioController {
     // Cerrar sesión
     static async logout(req, res) {
         try {
-            // Llamamos al servicio para que elimine el token
-            await UsuarioService.logout();
+            // Limpiar la información del usuario de la sesión
+            req.session.destroy(err => {
+                if (err) {
+                    console.error('Error al destruir la sesión:', err.message);
+                    return res.status(500).send('Error al cerrar sesión.');
+                }
 
-            // Limpiamos la cookie donde se guarda el token
-            res.clearCookie('authToken');  // Elimina la cookie con el token
+                // Limpiar la cookie del token
+                res.clearCookie('authToken'); // Elimina la cookie con el token
 
-            // Redirigimos al login
-            res.redirect('/login'); // Redirigir al login después de cerrar sesión
+                // Redirigir al login
+                res.redirect('/login');
+            });
         } catch (error) {
             console.error(error.message);
             res.status(500).send('Error al cerrar sesión.');
+        }
+    }
+
+    // Mostrar formulario de registro de comidas
+    static async mostrarRegistroComidas(req, res) {
+        try {
+            // Verificar si el usuario está autenticado
+            if (!req.session?.user?.id) {
+                return res.redirect('/login'); // Redirigir al login si no está autenticado
+            }
+
+            // Renderizar la vista con el usuario_id
+            res.render('registroComidas', { usuario_id: req.session.user.id });
+        } catch (error) {
+            console.error('Error al cargar el formulario de registro de comidas:', error.message);
+            res.status(500).send('Error al cargar el formulario.');
         }
     }
 }
