@@ -4,11 +4,10 @@ block content2
   h1 Iniciar sesión
   form(action='/user/login', method='POST')
     label(for='correo') Correo:
-    input(type='email', name='correo', required)
+    input.input-login(type='email', name='correo', required)
     label(for='password') Contraseña:
-    input(type='password', name='password', required)
+    input.input-login(type='password', name='password', required)
     button(type='submit') Iniciar sesión
     ul 
-        li 
-            a(href='/register') Registro
+      a(href='/register') Registro
     block content

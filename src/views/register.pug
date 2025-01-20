@@ -4,9 +4,9 @@ block content2
   h1 Registrarse
   form(action='/user/register', method='POST')
     label(for='nombre') Nombre:
-    input(type='text', name='nombre', required)
+    input.input-login(type='text', name='nombre', required)
     label(for='correo') Correo:
-    input(type='email', name='correo', required)
+    input.input-login(type='email', name='correo', required)
     label(for='password') Contraseña:
-    input(type='password', name='password', required)
+    input.input-login(type='password', name='password', required)
     button(type='submit') Registrarse

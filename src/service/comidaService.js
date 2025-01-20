@@ -1,13 +1,15 @@
+const { validarDatosComida } = require('../models/comidaModel');
+
 const axios = require('axios');
 
-const registrarComida = async (data) => {
+const registrarComida = async (datos) => {
     try {
-        const response = await axios.post('http://localhost:4000/api/comidas/registrar', data);
-        console.log('Respuesta de la API (registro):', response.data);
+        validarDatosComida(datos); // Llama a la función de validación
+        const response = await axios.post('http://localhost:4000/api/comidas/registrar', datos);
         return response.data;
     } catch (error) {
-        console.error('Error al registrar comida:', error.response?.data || error.message);
-        throw new Error('No se pudo registrar la comida.');
+        console.error('Error al registrar comida:', error.message);
+        throw new Error(error.message);
     }
 };
 
