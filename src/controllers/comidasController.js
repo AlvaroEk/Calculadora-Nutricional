@@ -12,7 +12,10 @@ const ComidaController = {
     },
     async obtenerComidasPorUsuario(req, res) {
         try {
-            const { usuario_id } = req.params;
+            const { usuario_id } = req.query; // Cambiado para usar req.query
+            if (!usuario_id) {
+                return res.status(400).json({ error: 'El usuario_id es obligatorio.' });
+            }
             const comidas = await ComidaService.obtenerComidasPorUsuario(usuario_id);
             res.status(200).json(comidas);
         } catch (error) {

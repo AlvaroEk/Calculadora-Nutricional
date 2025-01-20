@@ -4,6 +4,6 @@ const ComidaController = require('../controllers/comidasController');
 const router = express.Router();
 
 router.post('/registrar', ComidaController.registrarComida);
-router.get('/:usuario_id', ComidaController.obtenerComidasPorUsuario);
+router.get('/', ComidaController.obtenerComidasPorUsuario); // Cambiar para usar req.query
 
 module.exports = router;
