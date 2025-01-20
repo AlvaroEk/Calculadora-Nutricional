@@ -2,34 +2,59 @@ extends navbar
 
 block content2
   h1 Registro de Alimentos
-  
-  form#registroForm(action='/registro/registrar', method='POST') 
-    // Campo oculto para el usuario ID
-    input.input-field(type='text', id='usuario_id', name='usuario_id', value='1', hidden)
 
-    // Campo para la fecha
+  // Mensajes de éxito o error
+  if success
+    p.success= success
+  if error
+    p.error= error
+
+  // Formulario para registrar comidas
+  form#registroForm(action='/registro/registrar', method='POST') 
+    input(type='hidden', name='usuario_id', value=usuario_id)
+
     label(for='fecha') Fecha
     input.input-field(type='date', id='fecha', name='fecha', required)
 
-    // Campo para el nombre de la comida
     label(for='comida') Nombre de la Comida
     input.input-field(type='text', id='comida', name='comida', required)
 
-    // Campo para las calorías
-    label(for='calorias') Calorías (kcal)
+    label(for='calorias') Calorías
     input.input-field(type='number', id='calorias', name='calorias', required)
 
-    // Campo para las proteínas
-    label(for='proteinas') Proteínas (g)
+    label(for='proteinas') Proteínas
     input.input-field(type='number', id='proteinas', name='proteinas', step='0.01', required)
 
-    // Campo para los carbohidratos
-    label(for='carbohidratos') Carbohidratos (g)
+    label(for='carbohidratos') Carbohidratos
     input.input-field(type='number', id='carbohidratos', name='carbohidratos', step='0.01', required)
 
-    // Campo para las grasas
-    label(for='grasas') Grasas (g)
+    label(for='grasas') Grasas
     input.input-field(type='number', id='grasas', name='grasas', step='0.01', required)
 
-    // Botón para enviar el formulario
-    button(type='submit', id='registrarComida') Registrar Comida
+    button(type='submit') Registrar Comida
+
+  // Tabla para mostrar las comidas registradas
+  if comidas && comidas.length > 0
+    .table-container
+     h2.text-center Tus comidas registradas
+      table.table-styled
+        thead
+          tr
+            th Fecha
+            th Comida
+            th Calorías
+            th Proteínas
+            th Carbohidratos
+            th Grasas
+        tbody
+          each comida in comidas
+            tr
+              td= new Date(comida.fecha).toLocaleDateString()
+              td= comida.comida
+              td= comida.calorias
+              td= parseFloat(comida.proteinas).toFixed(2)
+              td= parseFloat(comida.carbohidratos).toFixed(2)
+              td= parseFloat(comida.grasas).toFixed(2)
+  else
+    p.text-center No hay comidas registradas todavía.
+

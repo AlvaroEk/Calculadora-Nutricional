@@ -18,25 +18,28 @@ class UsuarioController {
     // Iniciar sesión
     static async login(req, res) {
         const { correo, password } = req.body;
-
+    
         try {
             const { token, usuario } = await UsuarioService.loginUsuario({ correo, password });
-            console.log('Token:', token);
-            console.log('Usuario:', usuario);
-
+    
+            // Log para depuración
+            console.log('Usuario autenticado:');
+            console.log(`ID: ${usuario.id}, Nombre: ${usuario.nombre}, Correo: ${usuario.correo}`);
+    
             // Guardar información del usuario en la sesión
             req.session.user = { id: usuario.id, nombre: usuario.nombre, correo: usuario.correo };
-
+    
             // Guardar token en una cookie
             res.cookie('authToken', token, { httpOnly: true });
-
+    
             // Redirigir a la página principal
             res.redirect('/');
         } catch (error) {
-            console.error(error.message);
+            console.error('Error al iniciar sesión:', error.message);
             res.status(401).send('Credenciales incorrectas.');
         }
     }
+    
 
     // Cerrar sesión
     static async logout(req, res) {
