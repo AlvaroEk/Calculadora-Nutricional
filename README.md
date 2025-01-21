@@ -95,6 +95,7 @@ Aquí está una guía paso a paso sobre cómo utilizar tu proyecto basada en las
 - **Puertos**:
   - Asegúrate de que los puertos configurados en la API y el frontend no entren en conflicto.
 
+---
 Dependencias:
 axios: ^1.7.9
 
