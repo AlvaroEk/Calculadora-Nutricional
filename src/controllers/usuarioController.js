@@ -36,9 +36,11 @@ class UsuarioController {
             res.redirect('/');
         } catch (error) {
             console.error('Error al iniciar sesión:', error.message);
-            res.status(401).send('Credenciales incorrectas.');
+    
+            // Renderizar la vista de login nuevamente con un mensaje de error
+            res.status(401).render('login', { error: 'Credenciales incorrectas.' });
         }
-    }
+    }    
     
 
     // Cerrar sesión

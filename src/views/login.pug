@@ -7,6 +7,9 @@ block content2
     input.input-login(type='email', name='correo', required)
     label(for='password') Contraseña:
     input.input-login(type='password', name='password', required)
+    // Mostrar mensaje de error si existe
+    if error
+      p.error-message #{error}
     button(type='submit') Iniciar sesión
     ul 
       a(href='/register') Registro
