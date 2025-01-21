@@ -47,6 +47,54 @@ CalculadoraNutricionalFront/
 ├── package-lock.json
 ├── README.md
 
+Aquí está una guía paso a paso sobre cómo utilizar tu proyecto basada en las instrucciones proporcionadas:
+
+---
+
+### **Cómo utilizar el proyecto:**
+
+1. **Descargar los códigos**:
+   - Asegúrate de descargar **ambos códigos**: el de la API y el del frontend (main).
+
+2. **Abrir las carpetas en la terminal**:
+   - Abre una terminal en la carpeta principal del **frontend**.
+   - Abre otra terminal en la carpeta principal de la **API**.
+
+3. **Instalar las dependencias en ambos proyectos**:
+   - Ejecuta el siguiente comando en **ambas terminales** (una para la API y otra para el frontend):
+     ```bash
+     npm install
+     ```
+     Esto instalará todas las dependencias necesarias según el archivo `package.json`.
+
+4. **Iniciar primero la API**:
+   - En la terminal de la API, ejecuta:
+     ```bash
+     npm start
+     ```
+   - Esto iniciará el servidor de la API, que manejará las solicitudes y conectará con la base de datos.
+
+5. **Iniciar el frontend**:
+   - Una vez que la API esté funcionando correctamente, ve a la terminal del frontend y ejecuta:
+     ```bash
+     npm start
+     ```
+   - Esto levantará el servidor del frontend, permitiéndote interactuar con la interfaz.
+
+6. **Usar el proyecto**:
+   - Ahora, puedes abrir el navegador y comenzar a utilizar el proyecto desde la dirección que el frontend proporcione (generalmente algo como `http://localhost:3000` o similar).
+---
+### **Notas importantes**:
+- **Archivos `.env`**:
+  - Asegúrate de que tanto la API como el frontend tengan configurados correctamente sus archivos `.env` (si los necesitas).
+  - La API probablemente requerirá detalles como las credenciales de la base de datos.
+  
+- **Verificar el estado de la API**:
+  - Antes de iniciar el frontend, verifica que la API esté funcionando correctamente y escuche en el puerto configurado.
+
+- **Puertos**:
+  - Asegúrate de que los puertos configurados en la API y el frontend no entren en conflicto.
+
 Dependencias:
 axios: ^1.7.9
 
